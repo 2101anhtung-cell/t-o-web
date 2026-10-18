@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Một điều muốn nói ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ffe0ec, #ffc2d8, #fff0f5);
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 32px 22px;
+      border-radius: 25px;
+      box-shadow: 0 10px 35px rgba(220, 70, 120, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .heart {
+      font-size: 65px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      50% { transform: scale(1.15); }
+    }
+
+    h1 {
+      color: #e84376;
+      font-size: 28px;
+    }
+
+    p {
+      color: #6b4354;
+      line-height: 1.8;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 13px 23px;
+      margin: 8px 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #ff4f87;
+      color: white;
+    }
+
+    .letter {
+      background: #ffe0ec;
+      color: #b52c60;
+    }
+
+    #message {
+      margin-top: 20px;
+      color: #d6336c;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      animation: floatUp 6s linear forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="heart">💗</div>
+
+    <h1>Gửi cậu, người đặc biệt!</h1>
+
+    <p>
+      Tớ có một điều muốn nói với cậu từ lâu rồi...
+      <br>
+      Mỗi lần nói chuyện với cậu, tớ đều cảm thấy rất vui.
+      <br>
+      Và hôm nay, tớ muốn thành thật với trái tim mình.
+    </p>
+
+    <button class="letter" onclick="openLetter()">
+      💌 Mở thư bí mật
+    </button>
+
+    <div id="message"></div>
+
+    <div id="answer" hidden>
+      <p>Cậu có đồng ý cho tớ một cơ hội không? 🥺</p>
+
+      <button class="yes" onclick="acceptLove()">
+        Đồng ý ❤️
+      </button>
+
+      <button class="letter" onclick="thinkMore()">
+        Cho tớ suy nghĩ nhé 🌷
+      </button>
+    </div>
+  </main>
+
+  <script>
+    function openLetter() {
+      document.getElementById("message").innerHTML =
+        "Tớ thích cậu ❤️<br>" +
+        "Không biết cậu nghĩ thế nào, nhưng tớ muốn " +
+        "được quan tâm và ở bên cậu nhiều hơn.";
+
+      document.getElementById("answer").hidden = false;
+    }
+
+    function acceptLove() {
+      document.getElementById("message").innerHTML =
+        "Aaaa! Tớ vui lắm luôn! 💖🥰<br>" +
+        "Cảm ơn cậu đã cho tớ cơ hội nhé!";
+
+      document.getElementById("answer").hidden = true;
+    }
+
+    function thinkMore() {
+      document.getElementById("message").innerHTML =
+        "Không sao đâu, cậu cứ suy nghĩ nhé 🌷<br>" +
+        "Tớ tôn trọng cảm xúc của cậu.";
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = ["💗", "💕", "💖", "🌸"][
+        Math.floor(Math.random() * 4)
+      ];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (18 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 600);
+  </script>
+</body>
+</html>
